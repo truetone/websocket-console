@@ -1,14 +1,12 @@
 import flask, gevent, tweepy
 import gevent.monkey
+import config
 from gevent.pywsgi import WSGIServer
 
 gevent.monkey.patch_all()
 
 from flask import Flask, render_template, request, Response
 
-consumer_key = "B6Ul7pUmm0OQYnoerqQ"
-consumer_secret = "jLTZsgoDFH5hsNyxB5jkIkzbi23XhFQ2pMIEYWy2k"
-callback_url = "http://localhost:5000/verify"
 session = dict()
 db = dict()
 
@@ -68,7 +66,7 @@ def verify():
 	except tweepy.TweepError:
 		print "Auth failed!"
 	
-	api = tweepy.API
+	api = tweepy.API(auth)
 
 	db['api'] = api
 	db['access_token_key'] = auth.access_token.key
@@ -78,7 +76,14 @@ def verify():
 
 @app.route('/controller')
 def controller():
-	return render_template('controller.html')
+	api = db['api']
+	user = api.me()
+	access = False
+
+	if user.screen_name == 'truetone':
+		access = True
+
+	return render_template('controller.html', access=access)
 
 if __name__ == '__main__':
 	app.run(debug=True)
