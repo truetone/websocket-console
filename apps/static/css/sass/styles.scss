@@ -1,0 +1,53 @@
+@import "substratum";
+@import "normalize";
+
+
+$border-color: #333;
+$light-green: rgba(247,196,31,1);
+$lime-green: rgba(204,243,144,1);
+$red: rgba(255,0,61,1);
+$orange: rgba(252,147,10,1);
+$yellow: rgba(247,196,31,1);
+
+body {
+	padding: 2em;
+}
+
+ol {
+	border: 1px solid $border-color;
+	display: inline-block;
+	list-style: none;
+	margin: 1em 0;
+	padding: 0;
+}
+
+li {
+	border-left: 1px solid $border-color;
+	cursor: pointer;
+	display: table-cell;
+	height: 100px;
+	padding: .8em;
+	vertical-align: bottom;
+	&:hover {
+		background: #ddd;
+	}
+}
+
+fieldset {
+	margin-top: 1em;
+}
+
+label {
+	margin-left: .5em;
+}
+
+input {
+	clear: both;
+}
+
+.playing {
+	background: $red;
+	&:hover {
+		background: $red;
+	}
+}
