@@ -4,3 +4,6 @@
 [submodule "apps/static/css/substratum"]
 	path = apps/static/css/substratum
 	url = git@github.com:truetone/Substratum.git
+[submodule "apps/static/js/modernizr"]
+	path = apps/static/js/modernizr
+	url = git@github.com:Modernizr/Modernizr.git

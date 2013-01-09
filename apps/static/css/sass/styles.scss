@@ -45,6 +45,17 @@ input {
 	clear: both;
 }
 
+.a {
+	background: $lime-green;
+}
+
+.b {
+	background: $red;
+}
+
+.c {
+	background: $orange;
+}
 .playing {
 	background: $red;
 	&:hover {

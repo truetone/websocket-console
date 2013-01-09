@@ -2,10 +2,25 @@ import flask, gevent, tweepy
 import gevent.monkey
 import config
 from gevent.pywsgi import WSGIServer
+from twisted.internet import reactor
+from autobahn.websocket import WebSocketServerFactory, \
+								WebSocketServerProtocol, \
+								listenWS
+from flask import Flask, render_template, request, Response
+
+class EchoServerProtocol(WebSocketServerProtocol):
+ 
+	def onMessage(self, msg, binary):
+		self.sendMessage(msg, binary)
+ 
+if __name__ == '__main__':
+ 
+	factory = WebSocketServerFactory("ws://localhost:9000", debug = True)
+	factory.protocol = EchoServerProtocol
+	listenWS(factory)
+	reactor.run()
 
 gevent.monkey.patch_all()
-
-from flask import Flask, render_template, request, Response
 
 session = dict()
 db = dict()
@@ -33,10 +48,14 @@ def server_side_events():
 		event_stream(),
 		mimetype='text/event-stream')
 
+@app.route('/event-socket')
+def socket_stream():
+	return True #set this up to maintain a socket connection and relay data
+
 @app.route('/')
 @app.route('/section/<section>')
 def index(section=None):
-	return render_template('index.html', section=section)
+	return render_template('section.html', section=section)
 
 @app.route('/authenticate')
 def authenticate():

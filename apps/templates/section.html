@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block meta %}
+
+{% endblock %}
+
+{% block css %}
+
+{% endblock %}
+
+{% block js %}
+	<script src="/static/js/socket.js"></script>
+{% endblock %}
+
+{% block body %}
+	<div id="console" data-section="{{ section }}">
+		<button id="test" data-section="{{ section }}">Send Section</button>	
+	</div>
+{% endblock %}
