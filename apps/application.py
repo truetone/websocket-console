@@ -1,4 +1,4 @@
-import flask, gevent, tweepy
+import flask, gevent, tweepy, cherrypy
 import gevent.monkey
 import config
 from gevent.pywsgi import WSGIServer
@@ -6,17 +6,20 @@ from twisted.internet import reactor
 from autobahn.websocket import WebSocketServerFactory, \
 								WebSocketServerProtocol, \
 								listenWS
-from flask import Flask, render_template, request, Response
 
-class EchoServerProtocol(WebSocketServerProtocol):
- 
+from flask import Flask, render_template, request, Response
+from random import choice
+
+class socketServer(WebSocketServerProtocol):
+ 	
 	def onMessage(self, msg, binary):
+		
 		self.sendMessage(msg, binary)
  
 if __name__ == '__main__':
  
 	factory = WebSocketServerFactory("ws://localhost:9000", debug = True)
-	factory.protocol = EchoServerProtocol
+	factory.protocol = socketServer
 	listenWS(factory)
 	reactor.run()
 

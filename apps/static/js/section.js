@@ -1,6 +1,10 @@
 $(function ()
 {
-	var socket = new WebSocket("ws://localhost:9000");
-	
-
+	/* Modernizr */
+	Modernizr.load(
+	{
+		test: Modernizr.websockets,
+		yep: 'section-sockets.js',
+		nope: 'nosockets.js'
+	});
 });
