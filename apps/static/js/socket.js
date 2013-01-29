@@ -1,12 +1,10 @@
 $(function()
 {
-	var socket = new WebSocket("ws://localhost:9000");
+	var socket = new WebSocket("ws://localhost:9000" + window.location.pathname);
 
 	socket.onmessage = function(e)
 	{
-		returnedData = JSON.parse(e.data);
-
-		echoRcvd(returnedData);
+        console.log(e.data);
 	};
 
 	$('button').click(function()

@@ -1,15 +1,29 @@
 $(function ()
-{
-	var socket = new WebSocket("ws://localhost:9000");
+        {
+            var clientsSource = $('#clients-template').html();
+            var clientsTemplate = Handlebars.compile(clientsSource);
 
-	socket.onmessage = function (e)
-	{
-		rcvdData = JSON.pare(e.data);
-		toConsole(rcvdData);
-	};
+            var socket = new WebSocket("ws://localhost:9000" + window.location.pathname);
 
-	function toConsole(d)
-	{
-		$("#console").prepend(d);
-	}
-});
+            socket.onmessage = function(e){
+                payload = JSON.parse(e.data);
+                switch(payload.cmd) {
+                    case "updateclients":
+                        $('section[role="main"]').text('')
+                            for(var section in payload.data) {
+                                $('section[role="main"]').append(clientsTemplate({
+                                    'section': section,
+                                    'clients': payload.data[section]
+                                }));
+                            }
+                        console.log("Updated client listing.");
+                        break;
+                    default:
+                        console.log("Recieved invalid command!");
+                }
+            }
+
+            function toConsole(d){
+                $("#console").prepend(d);
+            }
+        });

@@ -10,21 +10,25 @@
 {% block js %}
 
 	<script src="/static/js/console.js"></script>
+    <script src="/static/js/handlebars.js"></script>
+
+    {% raw %}
+    <script id="clients-template" type="text/x-handlebars-template">
+        <h2>Section {{ section }}</h2>
+        <section class="section-{{ section }}">
+            {{#each clients}}
+            <div class="client-{{ @index }}">
+                WebSocket Client {{ @index }}
+            </div>
+            {{/each}}
+        </section>
+    </script>
+    {% endraw %}
 
 {% endblock %}
 
 {% block body %}
 	
 	<section id="console"></section>
-
-	<section class="column narrow first a">
-		<h1>Section A</h1>
-	</section>
-	<section class="column narrow b">
-		<h1>Section B</h1>
-	</section>
-	<section class="column narrow last c">
-		<h1>Section C</h1>
-	</section>
 
 {% endblock %}
