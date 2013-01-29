@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+{% block meta %}
+
+{% endblock %}
+
+{% block css %}
+
+{% endblock %}
+
+{% block js %}
+
+	<script src="/static/js/console.js"></script>
+    <script src="/static/js/handlebars.js"></script>
+
+    {% raw %}
+    <script id="clients-template" type="text/x-handlebars-template">
+        <h2>Section {{ section }}</h2>
+        <section class="section-{{ section }}">
+            {{#each clients}}
+            <div class="client-{{ @index }}">
+                WebSocket Client {{ @index }}
+            </div>
+            {{/each}}
+        </section>
+    </script>
+    {% endraw %}
+
+{% endblock %}
+
+{% block body %}
+	
+	<section id="console"></section>
+
+{% endblock %}

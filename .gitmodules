@@ -1,9 +1,9 @@
-[submodule "apps/static/css/normalize"]
-	path = apps/static/css/normalize
+[submodule "app/static/css/normalize"]
+	path = app/static/css/normalize
 	url = git@github.com:necolas/normalize.css.git
-[submodule "apps/static/css/substratum"]
-	path = apps/static/css/substratum
+[submodule "app/static/css/substratum"]
+	path = app/static/css/substratum
 	url = git@github.com:truetone/Substratum.git
-[submodule "apps/static/js/modernizr"]
-	path = apps/static/js/modernizr
+[submodule "app/static/js/modernizr"]
+	path = app/static/js/modernizr
 	url = git@github.com:Modernizr/Modernizr.git
