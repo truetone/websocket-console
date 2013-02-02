@@ -6,6 +6,6 @@ Werkzeug==0.8.3
 autobahn==0.5.9
 gevent==0.13.8
 greenlet==0.4.0
+jsonpickle==0.4.0
 tweepy==1.12
-wsgiref==0.1.2
 zope.interface==4.0.3
