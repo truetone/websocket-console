@@ -2,6 +2,8 @@ $(function()
 {
 	var socket = new WebSocket("ws://localhost:9000" + window.location.pathname);
 
+	console.log(window.location.pathname);
+
 	socket.onmessage = function(e)
 	{
         console.log(e.data);

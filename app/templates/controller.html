@@ -9,26 +9,45 @@
 
 {% block js %}
 
+{% if access %}
 	<script src="/static/js/console.js"></script>
     <script src="/static/js/handlebars.js"></script>
 
     {% raw %}
     <script id="clients-template" type="text/x-handlebars-template">
         <h2>Section {{ section }}</h2>
-        <section class="section-{{ section }}">
+        <section class="section section-{{ section }}">
+			<ul>
             {{#each clients}}
-            <div class="client-{{ @index }}">
+            <li class="client client-{{ @index }}">
                 WebSocket Client {{ @index }}
-            </div>
+            </li>
             {{/each}}
+			</ul>
         </section>
     </script>
     {% endraw %}
+
+{% endif %}
 
 {% endblock %}
 
 {% block body %}
 	
 	<section id="console"></section>
+	<section id="controls">
+		<div class="column narrow first">
+			<h1>Section 1</h1>
+			<button class="color-changer" data-command="chcolor" data-section="1" data-color="red">
+		</div>
+		<div class="column narrow">
+			<h1>Section 2</h2>
+			<button class="color-changer" data-command="chcolor" data-section="2" data-color="green">
+		</div>
+		<div class="column narrow last">
+			<h1>Section 3</h1>
+			<button class="color-changer" data-command="chcolor" data-section="3" data-color="blue">
+		</div>
+	</section>
 
 {% endblock %}

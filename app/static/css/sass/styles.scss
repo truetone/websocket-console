@@ -22,15 +22,6 @@ ol {
 }
 
 li {
-	border-left: 1px solid $border-color;
-	cursor: pointer;
-	display: table-cell;
-	height: 100px;
-	padding: .8em;
-	vertical-align: bottom;
-	&:hover {
-		background: #ddd;
-	}
 }
 
 fieldset {
@@ -45,15 +36,19 @@ input {
 	clear: both;
 }
 
-.a {
+.section {
+	padding: 1em;
+}
+
+.section-1 {
 	background: $lime-green;
 }
 
-.b {
+.section-2 {
 	background: $red;
 }
 
-.c {
+.section-3 {
 	background: $orange;
 }
 .playing {
