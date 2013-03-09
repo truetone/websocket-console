@@ -1,6 +1,8 @@
 import sys
 import config
 import jsonpickle
+import words
+from random import choice
 from twisted.python import log
 from twisted.internet import reactor
 from autobahn.websocket import WebSocketServerFactory, \
@@ -13,13 +15,17 @@ def get_payload(message):
 		'data':		message,
 	}
 
-class EchoServerProtocol(WebSocketServerProtocol):
+class Broadcast(WebSocketServerProtocol):
 	""" Defines a connection to the WS server."""
 
 	def __init__(self):
 		self.admin = False
 
 	def onConnect(self, request):
+		print "+++++++++++++++++++++++++++++++++++++++++++"
+		print "\nrequest: %s\n" % request
+		print "+++++++++++++++++++++++++++++++++++++++++++"
+
 		# Restrict to sections 1, 2 & 3?
 		WebSocketServerProtocol.onConnect(self, request)
 		if 'controller' in request.path:
@@ -27,6 +33,7 @@ class EchoServerProtocol(WebSocketServerProtocol):
 			self.factory.register_admin(self)
 		elif 'section' in request.path:
 			section = int(request.path.split('section/')[1])
+			self.word = choice(words.words)
 			self.factory.register(self, section)
 			# Send our session's request key to provide extremely basic message
 			# signing from clients
@@ -35,7 +42,6 @@ class EchoServerProtocol(WebSocketServerProtocol):
 			self.sendMessage(payload)
 
 	def onMessage(self, msg, binary):
-		# TODO: parse for console messages and commands
 		if not binary:
 			try:
 				payload = jsonpickle.decode(msg)
@@ -61,6 +67,20 @@ class EchoServerProtocol(WebSocketServerProtocol):
 			encoded_payload = jsonpickle.encode(payload)
 			self.sendMessage(encoded_payload)
 
+		try:
+			encoded_word = jsonpickle.encode(choice(words.words))
+			print encoded_word
+		except (RuntimeError, TypeError, NameError) as e:
+			print e
+
+		try:
+			self.sendMessage(encoded_word)
+			print "\nAttempted to send message to client.\n"
+
+		except (RuntimeError, TypeError, NameError) as e:
+			print e
+			print "\nMessage could not be sent.\n"
+
 	def connectionLost(self, reason):
 		WebSocketServerProtocol.connectionLost(self, reason)
 		self.factory.unregister(self)
@@ -75,15 +95,21 @@ class ServerFactory(WebSocketServerFactory):
 		self.admins = []
 
 	def register(self, client, section):
-		print self.clients
+
+		print "||||||||||||||||||||||||||||||||||||||||||||||||||||"
+		print "\n client: %s\n" % client
+		print "||||||||||||||||||||||||||||||||||||||||||||||||||||"
+
 		# See if the client is already in the group
 		for group in self.clients:
 			if client in self.clients[group]:
 				return False
+
 		# Check if the section exists in the dictionary; if not, initialize
 		if not self.clients.get(section):
 			self.clients.update({section: []})
 		self.clients[section].append(client)
+
 		payload = get_payload(self.clients)
 		payload['cmd'] = 'updateclients'
 		encoded_payload = jsonpickle.encode(payload)
@@ -138,7 +164,7 @@ class ServerFactory(WebSocketServerFactory):
 
 if __name__ == '__main__':
 	factory = ServerFactory("ws://localhost:9000", debug=True, debugCodePaths=True)
-	factory.protocol = EchoServerProtocol
+	factory.protocol = Broadcast
 	listenWS(factory)
 	log.startLogging(sys.stdout)
 	reactor.run()

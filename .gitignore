@@ -1,4 +1,7 @@
 app/static/css/sass/.sass-cache
+app/static/css/.sass-cache
+app/static/.sass-cache/*
+app/.sass-cache/*
 app/config.py
 app/config.pyc
 app/*.pyc

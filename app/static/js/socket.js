@@ -35,6 +35,10 @@ $(function()
 				console.log('We couldn\'t determine the command');
 			}
 		}
+		else
+		{
+			console.log(json)
+		}
 	};
 
 	$('button').click(function()
