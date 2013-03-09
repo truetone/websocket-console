@@ -4,15 +4,15 @@
 {% endblock %}
 
 {% block css %}
-
+<link href='http://fonts.googleapis.com/css?family=Bevan' rel='stylesheet' type='text/css'>
 {% endblock %}
 
 {% block js %}
+	<script src="/static/js/fittext/jquery.fittext.js"></script>
 	<script src="/static/js/socket.js"></script>
 {% endblock %}
 
 {% block body %}
 	<div id="console" data-section="{{ section }}">
-		<button id="test" data-section="{{ section }}">Send Section</button>	
 	</div>
 {% endblock %}

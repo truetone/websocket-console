@@ -30,6 +30,10 @@ $(function()
 					$('body').css('background-color',  json.cmd.val);
 				}
 			}
+			else if (json.cmd.cmd !== undefined && json.cmd.cmd === 'ft')
+			{
+				$('.ft').text(json.cmd.val).fitText(.8);
+			}
 			else
 			{
 				console.log('We couldn\'t determine the command');

@@ -17,6 +17,14 @@ body {
 	transition: background-color .5s;
 }
 
+.ft {
+	display: block;
+	font-family: 'Bevan', cursive;
+	margin: 0 auto;
+	text-align: center;
+	width: 90%;
+}
+
 ol {
 	border: 1px solid $border-color;
 	display: inline-block;

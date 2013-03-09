@@ -61,6 +61,9 @@ class Broadcast(WebSocketServerProtocol):
 			#	print "Recieved unauthorized request."
 
 	def onOpen(self):
+		payload = {}
+		command = {}
+
 		if self.admin:
 			payload = get_payload(self.factory.clients)
 			payload['cmd'] = 'updateclients'
@@ -68,7 +71,11 @@ class Broadcast(WebSocketServerProtocol):
 			self.sendMessage(encoded_payload)
 
 		try:
-			encoded_word = jsonpickle.encode(choice(words.words))
+			#  {"cmd": {"chcolor": "red", "stn": "1"}}
+			command['cmd'] = 'ft'
+			command['val'] = choice(words.words)
+			payload['cmd'] = command
+			encoded_word = jsonpickle.encode(payload)
 			print encoded_word
 		except (RuntimeError, TypeError, NameError) as e:
 			print e

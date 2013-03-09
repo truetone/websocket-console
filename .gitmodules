@@ -7,3 +7,6 @@
 [submodule "app/static/js/modernizr"]
 	path = app/static/js/modernizr
 	url = git@github.com:Modernizr/Modernizr.git
+[submodule "app/static/js/fittext"]
+	path = app/static/js/fittext
+	url = git@github.com:davatron5000/FitText.js.git
