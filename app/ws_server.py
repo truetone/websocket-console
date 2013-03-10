@@ -70,23 +70,24 @@ class Broadcast(WebSocketServerProtocol):
 			encoded_payload = jsonpickle.encode(payload)
 			self.sendMessage(encoded_payload)
 
-		try:
-			#  {"cmd": {"chcolor": "red", "stn": "1"}}
-			command['cmd'] = 'ft'
-			command['val'] = choice(words.words)
-			payload['cmd'] = command
-			encoded_word = jsonpickle.encode(payload)
-			print encoded_word
-		except (RuntimeError, TypeError, NameError) as e:
-			print e
+		else:
+			try:
+				#  {"cmd": {"chcolor": "red", "stn": "1"}}
+				command['cmd'] = 'ft'
+				command['val'] = choice(words.words)
+				payload['cmd'] = command
+				encoded_word = jsonpickle.encode(payload)
+				print encoded_word
+			except (RuntimeError, TypeError, NameError) as e:
+				print e
 
-		try:
-			self.sendMessage(encoded_word)
-			print "\nAttempted to send message to client.\n"
+			try:
+				self.sendMessage(encoded_word)
+				print "\nAttempted to send message to client.\n"
 
-		except (RuntimeError, TypeError, NameError) as e:
-			print e
-			print "\nMessage could not be sent.\n"
+			except (RuntimeError, TypeError, NameError) as e:
+				print e
+				print "\nMessage could not be sent.\n"
 
 	def connectionLost(self, reason):
 		WebSocketServerProtocol.connectionLost(self, reason)

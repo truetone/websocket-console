@@ -61,7 +61,6 @@ $(function ()
 
 		console.log(cmd)
 		console.log(msg)
-		$('footer').html('<p>Sent: ' + msg);
 
 		// Set up cmd and section up as json and send them to the websocket server
 		socket.send(msg);
