@@ -7,3 +7,4 @@ app/.sass-cache/*
 app/config.py
 app/config.pyc
 app/*.pyc
+.elasticbeanstalk/
