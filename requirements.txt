@@ -1,11 +1,8 @@
-CherryPy==3.2.2
 Flask==0.9
 Jinja2==2.6
 Twisted==12.3.0
 Werkzeug==0.8.3
 autobahn==0.5.9
-gevent==0.13.8
-greenlet==0.4.0
 jsonpickle==0.4.0
 tweepy==1.12
 zope.interface==4.0.3

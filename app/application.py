@@ -1,7 +1,5 @@
-import flask, gevent, tweepy, cherrypy
-import gevent.monkey
+import flask, tweepy,
 import config
-from gevent.pywsgi import WSGIServer
 from twisted.internet import reactor
 from autobahn.websocket import WebSocketServerFactory, \
 								WebSocketServerProtocol, \
@@ -22,8 +20,6 @@ if __name__ == '__main__':
 	factory.protocol = socketServer
 	listenWS(factory)
 	reactor.run()
-
-gevent.monkey.patch_all()
 
 session = dict()
 db = dict()
