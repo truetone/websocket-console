@@ -1,6 +1,6 @@
 $(function()
 {
-	var socket = new WebSocket("ws://localhost:9000" + window.location.pathname);
+	var socket = new WebSocket("ws://fullyarmedandoperational.com:9000" + window.location.pathname);
 
 	socket.onopen = function(msg)
 	{
@@ -10,6 +10,11 @@ $(function()
 	socket.onclose = function(msg)
 	{
 		$('#console').append('<p>WebSocket connection closed.');
+	}
+	
+	socket.onerror = function(e)
+	{
+		$('#console').append('<p>' + e);
 	}
 
 	socket.onmessage = function(msg)

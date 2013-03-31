@@ -5,7 +5,7 @@ $(function ()
 	var clientsTemplate = Handlebars.compile(clientsSource);
 
 	/* socket connection */
-	var socket = new WebSocket("ws://localhost:9000" + window.location.pathname);
+	var socket = new WebSocket("ws://fullyarmedandoperational.com:9000" + window.location.pathname);
 
 	socket.onopen = function(e)
 	{

@@ -171,7 +171,7 @@ class ServerFactory(WebSocketServerFactory):
 
 
 if __name__ == '__main__':
-	factory = ServerFactory("ws://localhost:9000", debug=True, debugCodePaths=True)
+	factory = ServerFactory("ws://fullyarmedandoperational.com:9000", debug=True, debugCodePaths=True)
 	factory.protocol = Broadcast
 	listenWS(factory)
 	log.startLogging(sys.stdout)
