@@ -15,8 +15,8 @@
 
     {% raw %}
     <script id="clients-template" type="text/x-handlebars-template">
-        <h2>Section {{ section }}</h2>
         <section class="section section-{{ section }}">
+			<h1>Section {{ section }}</h1>
 			<ul>
             {{#each clients}}
             <li class="client client-{{ @index }}">
@@ -24,6 +24,10 @@
             </li>
             {{/each}}
 			</ul>
+			<button class="color-changer" data-command="chcolor" data-section="{{ section }}" data-color="rgba(255,0,61,1)">Red</button>
+			<button class="color-changer" data-command="chcolor" data-section="{{ section }}" data-color="rgba(247,196,31,1)">Yellow</button>
+			<button class="color-changer" data-command="chcolor" data-section="{{ section }}" data-color="rgba(204,243,144,1)">Green</button>
+			<button class="color-changer" data-command="chcolor" data-section="{{ section }}" data-color="rgba(252,147,10,1)">Orange</button>
         </section>
     </script>
     {% endraw %}
@@ -38,6 +42,7 @@
 
 {% endblock %}
 {% block controls %}
+{#
 <section id="controls">
 	<div class="column narrow first">
 		<h1>Section 1</h1>
@@ -61,4 +66,5 @@
 		<button class="color-changer" data-command="chcolor" data-section="3" data-color="rgba(252,147,10,1)">Orange</button>
 	</div>
 </section>
+#}
 {% endblock %}

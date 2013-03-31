@@ -51,7 +51,7 @@ $(function ()
 		}
 	};
 
-	$('.color-changer').click(function ()
+	$('.color-changer').live('click', function ()
 	{
 		var btn = $(this);
 		var cmd = btn.data('command');
