@@ -23,8 +23,6 @@ $(function()
 
 		if (json.cmd !== undefined)
 		{
-			$('#console').append('<p>Hey! I received a command!');
-
 			if (json.cmd.cmd !== undefined && json.cmd.cmd === 'chcolor')
 			{
 				$('#console').append('<p>I\'m supposed to change color.');
